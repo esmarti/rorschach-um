@@ -1,0 +1,18 @@
+<div class="login-form">
+	<%= form_tag user_sessions_path, :method => :post do %>
+		<h2>Sign in</h2>
+		<div class="form-group">
+			<%= label_tag :email %>
+			<%= text_field_tag :email, "", class: "form-control" %>
+		</div>
+		<div class="form-group">
+			<%= label_tag :password %>
+			<%= password_field_tag :password, "", class: "form-control" %>
+		</div>
+		<div class="form-group clearfix">
+			<%= submit_tag "Sign in", class: "btn btn-primary pull-left" %>
+			<label class="checkbox-inline pull-left remember-me"><input type="checkbox"> Remember me</label>
+		</div>
+		<div><%= link_to "Don't have an account? Create here", new_user_path %></div>
+	<% end %>
+</div>

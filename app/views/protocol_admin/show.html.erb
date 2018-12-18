@@ -1,0 +1,35 @@
+<h1>Administrar Protocolos</h1>
+
+<p>Nombre del Paciente: <%= @patient.given_name+" "+@patient.last_name %></p>
+<p>Fecha: <%= @protocol.created_at %></p>
+<p>Tests: <%= @patient.rorschachTests.length %></p>
+</br>
+
+<p>
+  <strong>Resumen de protocolo:</strong>
+	</br>
+	<div style="display:inline-block;">
+		<%= button_to "Sumario Estructural", { :action => "new" }, :method => :get %>
+	</div>
+	<div style="display:inline-block;">
+		<%= button_to "Hoja de Constelaciones", { :action => "new" }, :method => :get %>
+	</div>
+	</br>
+  <strong>Láminas:</p>
+</p>
+</br>
+<div name="main grid">
+	<% @sheets.each do |sheet| %>
+		<div name="grid">
+			<h2>Lámina <%= sheet.name %></h2>
+			<%= link_to protocol_admin_sheet_path(@protocol.id,sheet.id) do
+				image_tag(sheet.background, alt: sheet.name+" miniatura", class: "sheet-mini")
+				end %>
+			<%#= link_to image_tag(sheet.background, border: 1, class: "sheet-mini"), :action => 'search', :controller => 'pages', :class => 'dock-item' %>
+			<p>Interpretaciones: 0<%#= @protocol.interpretations.length %> </p>
+		</div>
+	<% end %>
+</div>
+
+<%#= link_to 'Edit', edit_user_path(@user) %> |
+<%#= link_to 'Volver al menú', :main %>

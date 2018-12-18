@@ -1,0 +1,20 @@
+
+<%= form_tag({controller: "protocol_admin", action: "create"}, method: "post") do %>
+  <%= fields_for current_user do |user| %>
+      <div class="field">
+        <%= user.label :full_name, "Profesional a cargo" %><br>
+        <%= user.text_field :full_name, :value => current_user.given_name+" "+current_user.last_name %>
+      </div>
+      <div class="field">
+        <%= user.label :institution, "Institución" %><br>
+        <%= user.text_field :institution, :value => current_user.institution %>
+      </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :patient, "Paciente por apellido:" %>
+    <%= search_field(:patient, :last_name) %>
+  </div>
+  </br>
+  <%= submit_tag("Nuevo Protocolo") %>
+<% end %>

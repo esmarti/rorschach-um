@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rorschach-es</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+	<body>
+
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Logo</a>
+		    </div>
+
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Home</a></li>
+		        <li><a href="#">About</a></li>
+		        <li><a href="#">Projects</a></li>
+		        <li><a href="#">Contact</a></li>
+		      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<% if current_user %>
+	      	  <li>
+		      	  <%= link_to edit_user_path(current_user.id) do %>
+		      	  	<span class="glyphicon glyphicon-log-in"></span>Edit Profile
+		      	  <% end %>
+	      		</li>
+	      	  <li>
+	      	  	<%= link_to :logout, method: :post do %>
+	      	  		<span class="glyphicon glyphicon-log-in"></span>Logout
+	      	  	<% end %>
+	      		</li>
+	      	<% else %>
+	      	  <li>
+	      	  	<%= link_to new_user_path do %>
+	      	   		<span class="glyphicon glyphicon-log-in"></span>Register
+	      	  	<% end %>
+	      	  </li>
+	      	  <li>
+	      	  	<%= link_to :login do %>
+	      	  		<span class="glyphicon glyphicon-log-in"></span>Login
+	      			<% end %>
+	      		</li>
+	      	<% end %>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<% flash.each do |name, msg| -%>
+	     <%= content_tag :div, msg, class: name %>
+	<% end -%>
+
+	<%= yield %>
+
+	<br>
+
+	<%= render "main/footer" %>
+
+	</body>
+</html>

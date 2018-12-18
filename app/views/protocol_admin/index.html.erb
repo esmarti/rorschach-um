@@ -1,0 +1,21 @@
+<h1>Administrar Protocolos</h1>
+<table border>
+  <thead>
+    <tr>
+      <th>Fecha de Alta</th>
+      <th>Paciente</th>
+      <th>Profesional</th>
+      <th colspan="3">accion</th>
+    </tr>
+  </thead>
+<% @protocols.each do |protocol| %>
+  <tr>
+    <td><%= protocol.created_at.localtime.strftime("%d-%m-%Y %H:%M:%S") %></td>
+    <td><%= protocol.patient.given_name+" "+protocol.patient.last_name %></td>
+    <td><%= protocol.user.given_name+" "+protocol.user.last_name %></td>
+    <td><%= link_to 'Mostrar', protocol_admin_path(protocol) %></td>
+    <td><%= link_to 'Editar', edit_protocol_admin_path(protocol) %></td>
+    <td><%= link_to 'Eliminar', protocol_admin_path(protocol), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
