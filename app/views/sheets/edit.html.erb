@@ -4,16 +4,17 @@
 </div>
 	<!-- Base sheet + zone btns + form for interpretations -->
 
-		<div class="outer-box">
-			<div class="img-responsive inner-box" style="display: inline-block; background-image: url(/assets/lamina1/model_grey/img/Fondo.png); width: 770px; height: 578px; background-size: contain; background-repeat: no-repeat;">
-			</div>
-			<div class="img-responsive inner-box" style="background-image: url(/assets/lamina1/model_grey/img/Capa_18.png); border: solid; background-size: contain; background-repeat: no-repeat; left: 33.5%; top: 10.5%; z-index: 2; width:272px; height:115px;">
-			</div>
-		</div>
+  <div id="box">
+      	<%= image_tag (@sheet.background), class: "static" %>
+      	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_18.png"), class: "area test", id: "capa18" %>
+      	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_2.png"), class: "area test", id: "capa2" %>
+      	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_5.png"), class: "area test", id: "capa5" %>
+  </div>
+
 
 		<br></br>
 		<p>Selector de Areas</p>
-		<div id="AreaSelector" style="border-style: solid;">
+		<div id="botones">
 			<% @areas.each do |area| %>
 				<button name="<%= area.id %>"  ><%= area.code %></button>
 			<% end %>
@@ -78,7 +79,7 @@
 
 	</div>
 
-<br></br><br></br>
+<br></br>
 
 <%= link_to 'Show', @id %> |
 <%= link_to 'Back', protocol_admin_sheet_path %>

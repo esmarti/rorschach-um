@@ -62,16 +62,16 @@
 	    </div>
 	  </div>
 	</nav>
+	<div class="container-fluid">
+		<% flash.each do |name, msg| -%>
+		     <%= content_tag :div, msg, class: name %>
+		<% end -%>
 
-	<% flash.each do |name, msg| -%>
-	     <%= content_tag :div, msg, class: name %>
-	<% end -%>
+		<%= yield %>
 
-	<%= yield %>
+		<br>
 
-	<br>
-
-	<%= render "main/footer" %>
-
+		<%= render "main/footer" %>
+	</div>
 	</body>
 </html>
