@@ -10,6 +10,7 @@ class Admin::SheetsController < ApplicationController
 	# GET /sheets/1
 	# GET /sheets/1.json
 	def show
+  	  @sheets = Sheet.all
 	end
 
 	# GET /sheets/new

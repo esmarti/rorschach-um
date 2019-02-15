@@ -25,9 +25,11 @@ Rails.application.routes.draw do
 		# (app/controllers/admin/products_controller.rb)
 		resources :users
 		resources :interpretations
-		resources :areas
-		resources :zones
-		resources :sheets
+		resources :sheets do
+      resources :areas do
+        resources :zones
+      end
+    end
 	end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -14,7 +14,7 @@
       <tr>
         <td><%= sheet.name %></td>
         <td><%= sheet.background %></td>
-        <td><%= link_to 'Show', admin_sheets_path %></td>
+        <td><%= link_to 'Show', admin_sheet_path(sheet) %></td>
         <td><%= link_to 'Edit', edit_admin_sheet_path(sheet) %></td>
         <td><%= link_to 'Destroy', admin_sheet_path(sheet), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,4 +24,5 @@
 
 <br>
 
-<%= link_to 'New Sheet', new_admin_sheet_path %>
+<%= link_to 'New Sheet', new_admin_sheet_path %> |
+<%= link_to 'Back', admin_path %>

@@ -67,3 +67,14 @@ div {
     list-style: square;
   }
 }
+
+/* Logo de la app */
+.static {
+  /* The static image helps responsively resizing the bounding box correctly */ 
+  width: 26%;
+  height: auto;
+}
+
+.navbar-header {
+    background-color: #191722;
+}

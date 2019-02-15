@@ -2,6 +2,31 @@
 
 <h1 style="text-align: center;"><strong>Lámina <%= @sheet.name %></strong></h1>
 <div id="Fondo" style="margin-left: auto; margin-right: auto; width:770px; height:578px;z-index:1; visibility:visible; border-style: solid;background-image: url(<%= asset_path @sheet.background %>);">
+</div>
 
 <%= link_to 'Edit', edit_admin_sheet_path(@sheet) %> |
 <%= link_to 'Back', admin_sheets_path %>
+
+<br></br>
+<p>Areas</p>
+<table>
+  <thead>
+    <tr>
+      <th>code</th>
+      <th>numZones</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sheet.areas.each do |area| %>
+      <tr>
+        <td><%= area.code %></td>
+        <td><%= area.numZones %></td>
+        <td><%= link_to 'Show', admin_sheet_area_path(area) %></td>
+        <td><%= link_to 'Edit', edit_admin_sheet_area_path(area) %></td>
+        <td><%= link_to 'Destroy', admin_sheet_area_path(area), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
