@@ -1,4 +1,4 @@
-<%= form_for [:admin, @area] do |f| %>
+<%= form_for [:admin, :sheet,  @area] do |f| %>
   <% if @area.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@area.errors.count, "error") %> prohibited this area from being saved:</h2>

@@ -1,5 +1,5 @@
 <div id="head" class="text-center" style="max-width: 100%;">
-	<h1>Editing sheet <%= @sheet.id %> on Protocol <%= @protocol.id %> </h1>
+	<h1><%= "Editing sheet #{@sheet.id} on Protocol #{@protocol.id}: #{@protocol.patient.given_name} #{@protocol.patient.last_name}" %></h1>
 	<br></br>
 </div>
 	<!-- Base sheet + zone btns + form for interpretations -->
@@ -24,6 +24,9 @@
 	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_16.png"), class: "area test", id: "capa16" %>
 	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_17.png"), class: "area test", id: "capa17" %>
 	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_18.png"), class: "area test", id: "capa18" %>
+
+	<button class="clearButton_sheet" onclick="reset_areas();">Reestablecer</button>
+	<%= button_to "Ingresar", { action: "create" }, class: "addButton_sheet", remote: true, form: { "data-type" => "json" } %>
   </div>
 
 

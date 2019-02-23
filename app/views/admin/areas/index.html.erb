@@ -16,9 +16,9 @@
         <td><%= area.sheet_id %></td>
         <td><%= area.code %></td>
         <td><%= area.numZones %></td>
-        <td><%= link_to 'Show', admin_areas_path %></td>
-        <td><%= link_to 'Edit', edit_admin_area_path(area) %></td>
-        <td><%= link_to 'Destroy', admin_area_path(area), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_sheet_area_path(area.sheet_id, area) %></td>
+        <td><%= link_to 'Edit', edit_admin_sheet_area_path(area.sheet_id, area) %></td>
+        <td><%= link_to 'Destroy', admin_sheet_area_path(area.sheet_id, area), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,5 @@
 
 <br>
 
-<%= link_to 'New Area', new_admin_area_path %>
+<%= link_to 'New Area', new_admin_sheet_area_path %> |
+<%= link_to 'Back', admin_path %>

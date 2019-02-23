@@ -4,4 +4,16 @@ class Admin::ZonesController < ApplicationController
 	def index
 	  @zones = Zone.all
 	end
+
+	def show
+
+	end
+
+	private
+	  # Use callbacks to share common setup or constraints between actions.
+	  def set_sheet
+	    @sheet = Sheet.find(params[:id])
+	  end
+	end
+
 end
