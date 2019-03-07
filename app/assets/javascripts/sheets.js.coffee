@@ -8,7 +8,7 @@
 #    textColor = $(this).data("text-color")
 #    paintIt(this, backgroundColor, textColor)
 
-#funcion para
-#$ ->
-# $("button").on 'mouseover', (event) -> alert(sys.desc(event))
+#funcion for colour areas when mouse is over button in "area selector"
+$ ->
+ $("#areaButtons button").on 'mouseover', (event) -> this.className="proposed"
 

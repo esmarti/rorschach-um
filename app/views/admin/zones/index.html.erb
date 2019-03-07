@@ -15,6 +15,7 @@
 
   <tbody>
     <% @zones.each do |zone| %>
+      <% if zone and zone.sheet != null %>
       <tr>
         <td><%= zone.coord_x %></td>
         <td><%= zone.coord_y %></td>
@@ -22,10 +23,11 @@
         <td><%= zone.height %></td>
         <td><%= zone.z_index %></td>
         <td><%= zone.bg_image %></td>
-        <td><%= link_to 'Show', zone %></td>
+        <td><%= link_to 'Show', admin_sheet_area_zone_url(zone) %></td>
         <td><%= link_to 'Edit', edit_zone_path(zone) %></td>
         <td><%= link_to 'Destroy', zone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

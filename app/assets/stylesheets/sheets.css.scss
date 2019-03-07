@@ -2,13 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.test{
+.selected{
    background: rgb(0,255,0);
    border: 2px solid rgb(0,200,100);
    line-height: 100px;
 }
 
-.selected{
+.proposed{
    background: #1ca51c38;
    border: 2px solid rgb(0,200,100);
    line-height: 100px;
@@ -140,7 +140,7 @@
   width: 12.99%;
 }
 
-#botones{
+#areaButtons{
   text-align: center;
   border-style: solid;
 }
