@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Coord x:</strong>
   <%= @zone.coord_x %>
@@ -30,5 +28,13 @@
   <%= @zone.bg_image %>
 </p>
 
-<%= link_to 'Edit', edit_zone_path(@zone) %> |
-<%= link_to 'Back', zones_path %>
+<p>
+  <strong>Areas where is present:</strong>
+  <% @areas_partOf.each do |area| %>
+    <ul>
+      <li><%= area.code %></li>
+    </ul>
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_admin_sheet_area_zone_path(@zone) %> |
+<%= link_to 'Back', admin_sheet_area_zones_path %>
