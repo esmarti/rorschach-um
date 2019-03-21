@@ -10,3 +10,11 @@ function reset_areas() {
     }
     return;
 }
+
+ $("#areaButtons button").on({
+ 	hover: function(event){
+ 		for(i=0; i<this.attributes[1].size; i++) {
+ 			console.log(this.attributes[1]);	
+ 		}
+ 	}
+ });

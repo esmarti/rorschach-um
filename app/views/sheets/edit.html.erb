@@ -3,38 +3,25 @@
 	<br></br>
 </div>
 	<!-- Base sheet + zone btns + form for interpretations -->
-
   <div id="box">
-	<%= image_tag (@sheet.background), class: "static" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_1.png"), class: "area", id: "capa1" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_2.png"), class: "area", id: "capa2" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_3.png"), class: "area", id: "capa3" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_4.png"), class: "area", id: "capa4" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_5.png"), class: "area", id: "capa5" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_6.png"), class: "area", id: "capa6" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_7.png"), class: "area", id: "capa7" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_8.png"), class: "area", id: "capa8" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_9.png"), class: "area", id: "capa9" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_10.png"), class: "area", id: "capa10" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_11.png"), class: "area", id: "capa11" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_12.png"), class: "area", id: "capa12" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_13.png"), class: "area", id: "capa13" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_14.png"), class: "area", id: "capa14" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_15.png"), class: "area", id: "capa15" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_16.png"), class: "area", id: "capa16" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_17.png"), class: "area", id: "capa17" %>
-	<%= image_tag ("/assets/lamina1/model_grey/img/Capa_18.png"), class: "area", id: "capa18" %>
+	  	<%= image_tag (@sheet.background), class: "static" %>
+		<% @zonesUnique.each do |zone| %>
+			<%= image_tag (zone.bg_image), class: "area", id: "l"+"_"+zone.id.to_s %>
+		<% end %>
 
 	<button class="clearButton_sheet" onclick="reset_areas();">Reestablecer</button>
 	<%= button_to "Ingresar", { action: "create" }, class: "addButton_sheet", remote: true, form: { "data-type" => "json" } %>
   </div>
 
-
 		<br></br>
 		<p>Selector de Areas</p>
 		<div id="areaButtons">
-			<% @areas.each do |area| %>
-				<button id="<%= area.id %>" name="areaButton"><%= area.code %></button>
+			<% @sheet.areas.each do |area| %>
+				<% arr_zones=Array.new %>
+				<% area.zones.each do |zone| %>
+					<% arr_zones.push(zone.id)  %>
+				<% end %>
+				<button id="<%= area.id %>" arr_zones="<%= arr_zones %>" name="areaButton"><%= area.code %></button>
 			<% end %>
 		</div>
 

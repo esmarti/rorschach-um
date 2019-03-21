@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Zone id</th>
       <th>Coord x</th>
       <th>Coord y</th>
       <th>Width</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @zones.each do |zone| %>
       <tr>
+        <td><%= zone.id %></td>
         <td><%= zone.coord_x %></td>
         <td><%= zone.coord_y %></td>
         <td><%= zone.width %></td>
@@ -30,6 +32,7 @@
   </tbody>
 </table>
 
-<br>
+<br/ ><br/ >
 
-<%= link_to 'New Zone', new_admin_sheet_area_zone_url(@sheet_id, @area_id) %>
+<%= link_to 'New Zone', new_admin_sheet_area_zone_url(@sheet_id, @area_id) %> |
+<%= link_to 'Back', admin_sheets_path %>

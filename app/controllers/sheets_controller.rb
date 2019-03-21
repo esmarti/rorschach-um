@@ -25,8 +25,14 @@ class SheetsController < ApplicationController
     @protocol = RorschachTest.find_by(id: protocol_admin_params[:protocol_admin_id])
 
     #array de zones disponibles en la sheet
-    @areas = @sheet.areas
-
+    #recorrer todas las areas de la sheet, y filtrar las zones repetidas
+    zones=Array.new
+    @sheet.areas.each do |area|
+      area.zones.each do |zone|
+        zones.push(zone)
+      end
+    end
+    @zonesUnique=zones.uniq { |s| s.id }
   end
 
   # POST /sheets
