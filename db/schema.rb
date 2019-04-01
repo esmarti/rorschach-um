@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_14_103458) do
+ActiveRecord::Schema.define(version: 2019_04_01_111345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2018_02_14_103458) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "sheet_id"
+    t.bigint "allowed_interpretation_id"
+    t.index ["allowed_interpretation_id"], name: "index_areas_on_allowed_interpretation_id"
     t.index ["sheet_id"], name: "index_areas_on_sheet_id"
   end
 
@@ -120,4 +122,5 @@ ActiveRecord::Schema.define(version: 2018_02_14_103458) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "areas", "allowed_interpretations"
 end
