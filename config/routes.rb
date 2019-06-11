@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   end
 
   resources :stat_non_pat_adults
-  resources :allowed_interpretations
   resources :patients
 
   get 'admin' => 'admin/admin#index'
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
 		resources :interpretations
 		resources :sheets do
       resources :areas do
-        resources :zones
+        resources :zones, :allowed_interpretations
       end
     end
 	end

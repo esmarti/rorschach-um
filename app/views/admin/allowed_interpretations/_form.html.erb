@@ -1,4 +1,4 @@
-<%= form_for(@allowed_interpretation) do |f| %>
+<%= form_for [:admin, :sheet, :area, @allowed_interpretation] do |f| %>
   <% if @allowed_interpretation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@allowed_interpretation.errors.count, "error") %> prohibited this allowed_interpretation from being saved:</h2>
