@@ -1,25 +1,25 @@
 class SheetsController < ApplicationController
   before_action :set_sheet, only: [:show, :edit, :update, :destroy]
 
-  # GET /sheets
-  # GET /sheets.json
+  # GET protocol_admin/1/sheets
+  # GET protocol_admin/1/sheets.json
   def index
     @sheets = Sheet.all
   end
 
-  # GET /sheets/1
-  # GET /sheets/1.json
+  # GET protocol_admin/1/sheets/1
+  # GET protocol_admin/1/sheets/1.json
   def show
     @protocol=RorschachTest.find_by(id: protocol_admin_params[:protocol_admin_id])
     @patient=@protocol.patient
   end
 
-  # GET /sheets/new
+  # GET protocol_admin/1/sheets/new
   def new
     @sheet = Sheet.new
   end
 
-  # GET /sheets/1/edit
+  # GET protocol_admin/1/sheets/1/edit
   def edit
     #id del protocolo
     @protocol = RorschachTest.find_by(id: protocol_admin_params[:protocol_admin_id])

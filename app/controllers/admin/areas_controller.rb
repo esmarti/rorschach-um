@@ -4,7 +4,7 @@ class Admin::AreasController < ApplicationController
   # GET /areas
   # GET /areas.json
   def index
-    @areas = Area.all
+    @areas = Sheet.find_by_id(params[:sheet_id]).areas
   end
 
   # GET /areas/1

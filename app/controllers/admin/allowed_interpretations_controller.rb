@@ -6,7 +6,7 @@ class Admin::AllowedInterpretationsController < ApplicationController
   def index
   	@sheet = Sheet.find_by_id(params[:sheet_id])
     @area = Area.find_by_id(params[:area_id])
-    @allowed_interpretations = AllowedInterpretation.all
+    @allowed_interpretations = @area.allowedInterpretations
   end
 
   # GET /allowed_interpretations/1
@@ -25,6 +25,8 @@ class Admin::AllowedInterpretationsController < ApplicationController
 
   # GET /allowed_interpretations/1/edit
   def edit
+    @sheet = Sheet.find_by_id(params[:sheet_id])
+    @area = Area.find_by_id(params[:area_id])
   end
 
   # POST /allowed_interpretations
@@ -32,11 +34,11 @@ class Admin::AllowedInterpretationsController < ApplicationController
   def create
     @allowed_interpretation = AllowedInterpretation.new(allowed_interpretation_params)
     @area = Area.find_by_id(params[:area_id])
-    @area.allowedInterpretations << @allowed_interpretation
+    @area.allowedInterpretations.push(@allowed_interpretation)
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to admin_sheet_area_allowed_interpretations_path(params[:area_id]), notice: 'Allowed interpretation was successfully created.' }
+        format.html { redirect_to new_admin_sheet_area_allowed_interpretation_path(params[:sheet_id], params[:area_id]), notice: 'Allowed interpretation was successfully created.' }
         format.json { render :show, status: :created, location: @allowed_interpretation }
       else
         format.html { render :new }
@@ -50,7 +52,7 @@ class Admin::AllowedInterpretationsController < ApplicationController
   def update
     respond_to do |format|
       if @allowed_interpretation.update(allowed_interpretation_params)
-        format.html { redirect_to admin_sheet_area_allowed_interpretations_path(params[:area_id]), notice: 'Allowed interpretation was successfully updated.' }
+        format.html { redirect_to admin_sheet_area_allowed_interpretations_path(params[:sheet_id], params[:area_id]), notice: 'Allowed interpretation was successfully updated.' }
         format.json { render :show, status: :ok, location: @allowed_interpretation }
       else
         format.html { render :edit }

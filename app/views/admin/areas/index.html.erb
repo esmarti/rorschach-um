@@ -1,12 +1,13 @@
 <h1>Listing areas</h1>
 
-<table>
+<table class="table table-striped table-bordered table-hover table-condensed">
   <thead>
     <tr>
       <th>sheet_id</th>
       <th>Code</th>
       <th>Numzones</th>
-      <th colspan="4"></th>
+      <th colspan="3">Acciones</th>
+      <th colspan="2">Otros</th>
     </tr>
   </thead>
 
@@ -20,6 +21,7 @@
         <td><%= link_to 'Edit', edit_admin_sheet_area_path(area.sheet_id, area) %></td>
         <td><%= link_to 'Destroy', admin_sheet_area_path(area.sheet_id, area), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Administración de Zonas', admin_sheet_area_zones_url(area.sheet_id, area) %></td>
+        <td><%= link_to 'Administración de interpretaciones', admin_sheet_area_allowed_interpretations_path(area.sheet_id, area) %></td>
       </tr>
     <% end %>
   </tbody>
