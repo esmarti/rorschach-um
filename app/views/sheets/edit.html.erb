@@ -27,14 +27,21 @@
 
 <br></br>
 
-	<!-- List of interpretations made -->
-	<p>Listado de Interpretaciones</p>
-	<div id="interpretationList" style="border-style: solid;">
-	<!-- Mini sheet -->
-	</div>
+	<p>Controles</p>
+	<!-- Form for interpretations -->
+	<!-- Controls for add in interpretation line -->
 	<div id="interpretationControls" style="border-style: solid;">
 		<%= render 'editSheet_helper' %> 
 	</div>
+	<br></br>
+	<!-- List of interpretations made -->
+	<!-- Show in here every interpretation added, showing a minimap in each line and a brief of options selected -->
+	<p>Listado de Interpretaciones</p>
+	<div id="interpretationList" style="border-style: solid;">
+		<%= render 'showInterpretationMinilist_helper' %> 
+	<!-- Mini sheet -->
+	</div>
+
 <br></br>
 
 <%= link_to 'Show', @id %> |

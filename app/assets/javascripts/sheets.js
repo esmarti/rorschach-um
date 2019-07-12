@@ -32,5 +32,6 @@ $(window).on("load",function(){
   			$("#box #l_"+areas_arr[i]).toggleClass('selected');
   		}
   		//setear el estado del area como "seleccionada"
+  		//mostrar formulario de ingreso de interpretacion
   	});
 });
