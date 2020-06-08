@@ -1,49 +1,152 @@
-	<!-- div "localization" -->
-		<!-- Label "Localizacion" -->
-		<!-- Text area "areaCode" -->
-		<!-- checkbox "globalResp" -->
-		<!-- checkbox "undefinedRes_Dd99" -->
-		<!-- comboBox "direction" -->
-			<!-- option "^" -->
-			<!-- option ">" -->
-			<!-- option "<" -->
-			<!-- option "v" -->
+<div id="container" class="container">
+	<div class="row">
+		<div class="col-12">
+			<%= form_for admin_interpretations_path do |f| %>
+				<p>Controles</p>
+				<% if @interpretation && @interpretation.errors.any? %>
+					<div class="row">
+						<div class="col-12">
+							<div id="error_explanation">
+								<h2><%= pluralize(@interpretation.errors.count, "error") %> prohibited this interpretation from being saved:</h2>
+								<ul>
+									<% @interpretation.errors.full_messages.each do |message| %>
+										<li><%= message %></li>
+									<% end %>
+								</ul>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			<div id="main-container" class="container formControls">
+				<div id="interpretationControls" class="row">
+					<!-- Interpretation attr for new records -->
+					<!-- div "localization" -->
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<!-- Label "Localizacion" -->
+						<p>Localization</p>
+						<!-- Text area "areaCode" -->
+						<!-- aqui se va a ir autocompletando la codificacion global de la respuesta: "Mªd, TFu, FC.FD-, FMª.FC'+" -->
+						<div class="field formControls">
+							<%= f.label :globalResp %>
+							<%= f.text_area :globalResp, :readonly => true %>
+						</div>
+						<!-- checkbox "globalResp" -->
+						<div class="field formControls">
+							<%= f.label :"Respuesta Global (W)" %>
+							<!-- al marcar la casilla W se debe deshabilitar el resto de los controles del form, ver cuales pueden permanecer editables y cuales no.-->
+							<%= f.check_box :globalRespW_CheckBox %>
+							<%= f.label :"Respuesta Global (WS)" %>
+							<%= f.check_box :globalRespWS_CheckBox %>
+						</div>
+						<!-- checkbox "undefinedRes_Dd99" -->
+						<div id="div_ndefinedRes_Dd99" class="field formControls">
+							<%= f.label :"Localización no definida (Dd99)" %>
+							<%= f.check_box :undefinedRes_Dd99 %>
+							<%= f.label :"Localización no definida (DdS99)" %>
+							<%= f.check_box :undefinedRes_DdS99 %>
+						</div>
+						<!-- comboBox "direction" -->
+						<div id="div_direction" class="field formControls">
+							<%= f.label :direction %>
+							<%= f.select :direction, @direction %>
+						</div>
+					</div>
 
-	<!-- div "respContents" -->
-		<!-- Label "Contenido de la Respouesta" -->
-			<!-- div "popularContents" -->
+					<!-- div "respContents" -->
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<p>Contenido de la Respuesta</p>
+							<!-- div "popularContents" -->
+							<div id="popularContents">
+								<div class="field formControls">
+									<%= f.label :"Contenidos populares" %>
+									<%= f.select :popularContentsCombo, ["",] %>
+								</div>
+								<!-- div "Determinants" -->
+								<div class="field formControls">
+									<%= f.label :Determinantes %>
+									<%= f.select :detCombo, ["",] %>
+								</div>
+								<!-- option 24 elementos -->
+							</div>
 
-				<!-- Label "Contenidos populares" -->
-					<!-- comboBox "popularContentsCombo" -->
+							<!-- div "FQ, Calidad Formal" -->
+							<div id="FQ">
+								<div class="field formControls">
+									<%= f.label :"Calidad Formal (FQ)" %>
+									<%= f.select :fq,  @fq %>
+								</div>
+							</div>
+					</div>
 
+					<!-- div "DQ, Calidad Evolutiva" -->
+					<div class="col-xs-6 col-sm-4 col-md-4">
+							<div class="field formControls">
+								<%= f.label :"Calidad Evolutiva (DQ)" %>
+								<%= f.select :dq,  @dq %>
+							</div>
+					</div>
+				</div>
 
-				<!-- div "Determinants" -->
-					<!-- Label "Determinantes" -->
-						<!-- comboBox "detCombo" -->
-							<!-- option 24 elementos -->
+				<!-- div "OrgActivity, Actividad Organizativa" -->
+				<div class="row">
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<div class="field formControls">
+							<%= f.label :"Actividad Organizativa" %>
+						</div>
+					</div>
 
-			<!-- div "FQ" -->
-				<!-- Label "Calidad Formal" -->
-					<!-- comboBox "fq" -->
-						<!-- option "+" -->
-						<!-- option "o" -->
-						<!-- option "u" -->
-						<!-- option "-" -->
+					<!-- div "SpecialCodes, Codigos Especiales" -->
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<div class="field formControls">
+							<%= f.label :"Codigos Especiales" %>
+						</div>
+					</div>
 
-	<!-- div "DQ" -->
-		<!-- Label "Calidad Evolutiva" -->
-		<!-- comboBox "dq" -->
-			<!-- option "+" -->
-			<!-- option "o" -->
-			<!-- option "v/+" -->
-			<!-- option "v" -->
+					<!-- Text area "obs" -->
+					<div class="col-xs-6 col-sm-4 col-md-4">
+						<div class="field formControls">
+							<%= f.label :"Observaciones" %>
+							<%= f.text_area :obs %>
+						</div>
+					</div>
+				</div>
 
-	<!-- div "OrgActivity" -->
-		<!-- Label "Actividad Organizativa" -->
+				<div class="row">
+					<div class="field formControls">
+						<div class="actions">
+							<!-- Button trigger modal: ver lamina original "viewSheet" -->
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+							  Mostrar lámina
+							</button>
+							<!-- Button submit remote:on -->
+							<%= f.submit("OK", {class: "btn btn-primary"}) %>
+							<!-- Button Cancel -->
+							<%= button_tag "Cancelar", type: 'button', onclick: "clean_interpretationForm(){return;}", class: 'btn btn-danger' %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
 
-	<!-- div "SpecialCodes" -->
-		<!-- Label "Codigos Especiales" -->
-
-	<!-- Button ver lamina original "viewSheet" -->
-	<!-- Text area "obs" -->
-	<!-- Button submit remote:on -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ver lámina</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

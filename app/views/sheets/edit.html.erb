@@ -1,47 +1,75 @@
+
 <div id="head" class="text-center" style="max-width: 100%;">
 	<h1><%= "Editing sheet #{@sheet.id} on Protocol #{@protocol.id}: #{@protocol.patient.given_name} #{@protocol.patient.last_name}" %></h1>
 	<br></br>
 </div>
-	<!-- Base sheet + zone btns + form for interpretations -->
-  <div id="box">
-	  	<%= image_tag (@sheet.background), class: "static" %>
-		<% @zonesUnique.each do |zone| %>
-			<%= image_tag (zone.bg_image), class: "area", id: "l"+"_"+zone.id.to_s %>
-		<% end %>
+<!-- Base sheet + zone btns + form for interpretations -->
+<div id="box">
+  	<%= image_tag (@sheet.background), class: "static" %>
+	<% @zonesUnique.each do |zone| %>
+		<%= image_tag (zone.bg_image), class: "area", id: "l"+"_"+zone.id.to_s %>
+	<% end %>
 
-	<button class="clearButton_sheet" onclick="reset_areas();">Reestablecer</button>
-	<%= button_to "Ingresar", { action: "create" }, class: "addButton_sheet", remote: true, form: { "data-type" => "json" } %>
-  </div>
+<button class="clearButton_sheet" onclick="reset_areas();">Reestablecer</button>
+<%= button_to "Ingresar", { action: "create" }, class: "addButton_sheet", remote: true, form: { "data-type" => "json" } %>
 
-		<br></br>
-		<p>Selector de Areas</p>
-		<div id="areaButtons">
-			<% @sheet.areas.each do |area| %>
-				<% arr_zones=Array.new %>
-				<% area.zones.each do |zone| %>
-					<% arr_zones.push(zone.id)  %>
-				<% end %>
-				<button id="<%= area.id %>" arr_zones="<%= arr_zones %>" name="areaButton"><%= area.code %></button>
-			<% end %>
-		</div>
+</div>
 
 <br></br>
 
-	<p>Controles</p>
-	<!-- Form for interpretations -->
-	<!-- Controls for add in interpretation line -->
-	<div id="interpretationControls" style="border-style: solid;">
-		<%= render 'editSheet_helper' %> 
-	</div>
-	<br></br>
-	<!-- List of interpretations made -->
-	<!-- Show in here every interpretation added, showing a minimap in each line and a brief of options selected -->
-	<p>Listado de Interpretaciones</p>
-	<div id="interpretationList" style="border-style: solid;">
-		<%= render 'showInterpretationMinilist_helper' %> 
-	<!-- Mini sheet -->
-	</div>
+<div id="main-container" class="container formControls">
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8 formControls">.col-xs-12 .col-sm-6 .col-md-8</div>
+  <div class="col-xs-8 col-sm-2 col-md-2 formControls">.col-xs-8 .col-sm-2 .col-md-2</div>
+  <div class="col-xs-6 col-md-4 formControls">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-xs-6 col-sm-4 formControls">.col-xs-6 .col-sm-4</div>
+  <div class="col-xs-6 col-sm-4 formControls">.col-xs-6 .col-sm-4</div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-6 col-sm-4 formControls">.col-xs-6 .col-sm-4</div>
+</div>
+</div>
 
+<div id="container" class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<p>Selector de Areas</p>
+			<div id="areaButtons">
+				<% @sheet.areas.each do |area| %>
+					<% arr_zones=Array.new %>
+					<% area.zones.each do |zone| %>
+						<% arr_zones.push(zone.id)  %>
+					<% end %>
+					<button id="<%= area.id %>" arr_zones="<%= arr_zones %>" name="areaButton">
+						<%= area.code %>
+					</button>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<br></br>
+
+<!-- Form for interpretations -->
+<!-- Controls for add in interpretation line -->
+	<%= render 'editSheet_helper' %> 
+<br></br>
+
+<!-- List of interpretations made -->
+<!-- Show in here every interpretation added, showing a minimap in each line and a brief of options selected -->
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<p>Listado de Interpretaciones</p>
+			<div id="interpretationList" style="border-style: solid;">
+				<%= render 'showInterpretationMinilist_helper' %> 
+			<!-- Mini sheet -->
+			</div>
+		</div>
+	</div>
+</div>
 <br></br>
 
 <%= link_to 'Show', @id %> |

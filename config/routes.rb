@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 		resources :interpretations
 		resources :sheets do
       resources :areas do
-        resources :zones, :allowed_interpretations
+        resources :zones, :allowed_interpretations, :interpretations
       end
     end
 	end

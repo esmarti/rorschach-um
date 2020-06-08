@@ -1,6 +1,13 @@
 // Place all the styles related to the Sheets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.formControls{
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+}
 
 .selected{
    background: rgb(0,255,0);
@@ -166,6 +173,10 @@
   display: block;
 }
 
+div .actions {
+  text-align: center;
+}
+
 .clearButton_sheet {
   float: left;
   position: relative;
@@ -176,4 +187,22 @@
   float: right;
   position: relative;
   bottom: 25px;
+}
+
+.areaButton_pressed {
+  background-color: lime;
+}
+
+
+//estilos para animar divs
+.toggle-content {
+  display: none;
+  height: 0;
+  overflow: hidden;
+  transition: height 350ms ease-in-out;
+}
+
+.toggle-content.is-visible {
+  display: block;
+  height: auto;
 }

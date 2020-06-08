@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_07_114212) do
+ActiveRecord::Schema.define(version: 2019_07_31_110142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2019_06_07_114212) do
     t.string "name"
     t.string "description"
     t.bigint "rorschachTest_id"
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_interpretations_on_area_id"
     t.index ["rorschachTest_id"], name: "index_interpretations_on_rorschachTest_id"
   end
 
@@ -126,4 +128,5 @@ ActiveRecord::Schema.define(version: 2019_06_07_114212) do
 
   add_foreign_key "allowed_interpretations", "areas"
   add_foreign_key "areas", "allowed_interpretations"
+  add_foreign_key "interpretations", "areas"
 end

@@ -1,3 +1,4 @@
+#controlador usuarios
 class SheetsController < ApplicationController
   before_action :set_sheet, only: [:show, :edit, :update, :destroy]
 
@@ -23,7 +24,12 @@ class SheetsController < ApplicationController
   def edit
     #id del protocolo
     @protocol = RorschachTest.find_by(id: protocol_admin_params[:protocol_admin_id])
-
+    #array con valores para select de direction
+    @direction = [['^', 1], ['>', 2], ['<', 3], ['v', 4]]
+    #array con valores para select de fq
+    @fq= [['+', 1], ['o', 2], ['u', 3], ['-', 4]]
+    #array con valores para select de dq
+    @dq= [['+', 1], ['o', 2], ['v/+', 3], ['v', 4]]
     #array de zones disponibles en la sheet
     #recorrer todas las areas de la sheet, y filtrar las zones repetidas
     zones=Array.new

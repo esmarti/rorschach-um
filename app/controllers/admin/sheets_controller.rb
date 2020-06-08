@@ -1,3 +1,4 @@
+#controlador administrador
 class Admin::SheetsController < ApplicationController
 	before_action :set_sheet, only: [:show, :edit, :update, :destroy]
 
